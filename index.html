@@ -4,96 +4,383 @@
 <title>Strony internetowe</title>
 <meta charset="utf-8">
 <style>
-#wrapper {
-float:center;
-margin: 0 auto;
-background: white;width: 1200px;
+
+{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+font-family: 'Poppins', sans-serif;
 }
+
+.popup
+{
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+display: none;
+}
+.contentBox
+{
+position: relative;
+width: 300px;
+height: 400px;
+background: #fff;
+border-radius: 20px;
+display: flex;
+box-shadow: 0 0px 15px rgba(0,0,0,0.1);
+}
+.contentBox .content
+{
+position:relative;
+width: 300px;
+height: 400px;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+.contentBox .content h3
+{
+color: #333;
+line-height: 1em;
+font-weight: 300;
+font-size: 2em;
+}
+.contentBox .content p
+{
+font-weight: 300;
+}
+
+.close
+{
+position: absolute;
+top: 10px;
+right: 10px;
+width: 20px;
+height: 20px;
+background: #DC143C	;
+background-repeat: no-repeat;
+background-size: 10px;
+background-position: center;
+cursor: pointer;
+border-radius: 50%;
+z-index: 10;
+}
+<!--obiekt dopasowuje sie do okna przeladarki-->
+@media (max-width : 767px)
+{
+	.contentBox
+	{
+	width: 300px; <!--zmien to pozniej ma byc polowa-->
+	height: auto;
+	flex-direction: column;
+	}
+}
+.contentBox . content
+{
+height: auto;
+text-align: center;
+padding: 20px;
+padding-top: 0;
+}
+.close
+{
+top: -50px;
+right: -10px;
+background: #DC143C	;
+background-repeat: no-repeat;
+background-size: 10px;
+background-position: center;
+}
+}
+
+
+
+<!-- section2 
+{
+position: relative;
+width: 100%;
+height: 100vh;
+overflow: hidden;
+}
+section2 img
+{
+width: 100%;
+}
+
+-->
+
+section
+{
+display: flex;
+justify-content: center;
+align-times: center;
+min-height: 100vh;
+background: #1a1a1a;
+overflow: hidden;
+}
+section u1
+{
+position: relative;
+display: flex;
+flex-direction: column;
+}
+section u1 li
+{
+list-style: none;
+}
+section u1 li:before
+{
+content: attr(data-text);
+position: absolute;
+top: 50%;
+left: 50%;
+transform: translate(-50%,-50%);
+color: #fff;
+font-size: 6em;
+font-weight: 700;
+pointer-events: none;
+opacity: 0;
+letter-spacing: 20px;
+transition: 0.5s;
+white-space: nowrap;
+}
+section u1 li:hover:before
+{
+opacity: 0.05;
+letter-spacing: 20px;
+}
+section u1 li a
+{
+position: relative;
+display: inline-block;
+padding: 6px 15px;
+text-decoration: none;
+background: #2196f3;
+color: #fff;
+text-transform: uppercase;
+letter-spacing: 2px;
+overflow: hidden;
+transition: 0.5s;
+z-index: 1;
+}
+section u1:hover li a
+{
+opacity: 0;
+}
+section u1 li a:hover
+{
+transform: scale(1.4);
+z-index: 1000;
+background: #ff3f81;
+opacity: 1;
+}
+section u1 li a:before
+{
+content: '';
+position: absolute;
+top: 0;
+left: -100px;
+width: 80px;
+height: 100%;
+background: linear-gradient(90deg,transparent, rgba(255,255,255,0.8), transparent);
+transform: skewX(35deg);
+transition 0s;
+}
+section u1 li a:hover:before
+{
+left: calc(100% + 100px);
+transition: 0.5s;
+transition-delay: 0.2s;
+}
+
+
+
+
+
+
+
+::-webkit-scrollbar
+{
+width: 0;
+}
+#scrollPath
+{
+position: fixed;
+top: 0;
+right: 0;
+width: 10px;
+height: 100%;
+background: rgba(255,255,255,0.05);
+}
+
+#progressbar
+{
+position: fixed;
+top: 0;
+right: 0;
+width: 10px;
+background: linear-gradient(to top, #008aff,#00ffe7)
+	;
+animation: animate 5s linear infinite;
+}
+@keyframes animate
+{
+	0%,100%
+	{
+		filter: hue-rotate(0deg);
+	}
+	50%
+	{
+		filter: hue-rotate(360deg);
+	}
+}
+#progressbar:before
+{	
+	content: '';
+	position: absolute;
+	top 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to top, #008aff,#00ffe7)
+	;
+	filter: blur(30px);
+}
+#progressbar:after
+{	
+	content: '';
+	position: absolute;
+	top 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: linear-gradient(to top, #008aff,#00ffe7)
+	;
+	filter: blur(30px);
+}
+
+
+
 </style>
 </head>
 <body>
-<p>nagranie
-https://michalswiatkowski.github.io/nagraniee/</p>
+<!-- <section2>
+	<img id="background" alt="background" src="https://i.imgur.com/N7ETzFO.jpg" />
+<section2>
+	<script src="rainyday.js"></script>
+	<script>
+		function rain(){
+			const image = document.getElementById('background');
+			image.onload = function(){
+				var rainyDay = new RainyDay({
+					image: this,
+					blur: 10
+				})
+			RainyDay.rain([
+				[5,2,2]
+			],e)
+		}
+		image.src = 'https://i.imgur.com/N7ETzFO.jpg';
+	}
+	rain();
+	
+	
+	
+	</script>
+-->
+<div id="progressbar"></div>
+<div id="scrollPath"></div>
 
-<p>nw
-https://michalswiatkowski.github.io/nw/</p>
+<div class="popup">
+	<div class="contentBox">
+	<div class="close"></div>
+		<div class="content">
+			<div>
+				<h3>Cześć!</h3>
+				<p>Znajdziesz tutaj większość przykładów z HTML'a i CSS'a z podręcznika "Tworzenie stron i aplikacji internetowych oraz baz danych 
+				i administrowanie nimi Część 1 INF.03"</p>
+			</div>
+	
+		</div>
+	</div>
+</div>
+<!--automatyczny komunikat na stronie-->
+<script>
+const popup = document.querySelector('.popup');
+const close = document.querySelector('.close');
 
-<p>projekt 1
-https://michalswiatkowski.github.io/projekt-1/</p>
+window.onload = function(){
+setTimeout(function(){
+popup.style.display = "block";
+<!-- opoznienie czasu-->
 
-<p>przyklad 5.9
-https://michalswiatkowski.github.io/przyklad-5.9/</p>
+}, 2000)
+}
+close.addEventListener('click', () => {
+popup.style.display = "none";
+})
+</script>
 
-<p>przyklad 5.10
-https://michalswiatkowski.github.io/przyklad-5.10/</p>
 
-<p>przyklad 5.11
-https://michalswiatkowski.github.io/przyklad-5.11/</p>
+<section>
+<u1>
+	<li data-text="Przykład nagrania"><a href="https://michalswiatkowski.github.io/nagraniee/" target="_blank">Przykład nagrania</a></li>
+	<li data-text="Projekt 1"><a href="https://michalswiatkowski.github.io/projekt-1/"target="_blank">Projekt 1</a></li>
+	<li data-text="Przykład 5.9"><a href="https://michalswiatkowski.github.io/przyklad-5.9/"target="_blank">Przykład 5.9</a></li>
+	<li data-text="Przykład 5.10"><a href="https://michalswiatkowski.github.io/przyklad-5.10/"target="_blank">Przykład 5.10</a></li>
+	<li data-text="Przykład 5.11"><a href="https://michalswiatkowski.github.io/przyklad-5.11/"target="_blank">Przykład 5.11</a></li>
+	<li data-text="Przykład 5.13"><a href="https://michalswiatkowski.github.io/przykald-5.13/"target="_blank">Przykład 5.13</a></li>
+	<li data-text="Przykład 5.14"><a href="https://michalswiatkowski.github.io/przyklad-5.14/"target="_blank">Przykład 5.14</a></li>
+	<li data-text="Przykład 5.15"><a href="https://michalswiatkowski.github.io/przyklad-5.15/"target="_blank">Przykład 5.15</a></li>
+	<li data-text="Przykład 5.16"><a href="https://michalswiatkowski.github.io/przyklad-5.16/"target="_blank">Przykład 5.16</a></li>
+	<li data-text="Przykład 6.2"><a href="https://michalswiatkowski.github.io/przyklad-6.2/"target="_blank">Przykład 6.2</a></li>
+	<li data-text="Przykład 7.1"><a href="https://michalswiatkowski.github.io/przyklad-7.1/"target="_blank">Przykład 7.1</a></li>
+	<li data-text="Przykład 7.2"><a href="https://michalswiatkowski.github.io/przyklad-7.2/"target="_blank">Przykład 7.2</a></li>
+	<li data-text="Przykład 7.3"><a href="https://michalswiatkowski.github.io/przyklad-7.3/"target="_blank">Przykład 7.3</a></li>
+	<li data-text="Przykład 7.7"><a href="https://michalswiatkowski.github.io/przyklad-7.7/"target="_blank">Przykład 7.7</a></li>
+	<li data-text="Przykład 7.10"><a href="https://michalswiatkowski.github.io/przyklad-7.10/"target="_blank">Przykład 7.10</a></li>
+	<li data-text="Przykład 7.11"><a href="https://michalswiatkowski.github.io/przyklad-7.11/"target="_blank">Przykład 7.11</a></li>
+	<li data-text="Przykład 7.12"><a href="https://michalswiatkowski.github.io/przyklad-7.12/"target="_blank">Przykład 7.12</a></li>
+	<li data-text="Przykład 7.13"><a href="https://michalswiatkowski.github.io/przyklad-7.13/"target="_blank">Przykład 7.13</a></li>
+	<li data-text="Przykład 7.14"><a href="https://michalswiatkowski.github.io/przyklad-7.14/"target="_blank">Przykład 7.14</a></li>
+	<li data-text="Przykład 7.15"><a href="https://michalswiatkowski.github.io/przyklad-7.15/"target="_blank">Przykład 7.15</a></li>
+	<li data-text="Przykład 7.16"><a href="https://michalswiatkowski.github.io/przyklad-7.16/"target="_blank">Przykład 7.16</a></li>
+	<li data-text="Przykład 7.18"><a href="https://michalswiatkowski.github.io/przyklad-7.18/"target="_blank">Przykład 7.18</a></li>
+	<li data-text="Przykład 7.19"><a href="https://michalswiatkowski.github.io/przyklad-7.19/"target="_blank">Przykład 7.19</a></li>
+	<li data-text="Przykład 8.6"><a href="https://michalswiatkowski.github.io/przyklad-8.6/"target="_blank">Przykład 8.6</a></li>
+	<li data-text="Przykład 8.11"><a href="https://michalswiatkowski.github.io/przyklad-8.11/"target="_blank">Przykład 8.11</a></li>
+	<li data-text="SSW 2 Z 76"><a href="https://michalswiatkowski.github.io/SSW-2-z-76/"target="_blank">SSW 2 Z 76</a></li>
+	<li data-text="SSW 6 Z 76"><a href="https://michalswiatkowski.github.io/SSW-6-z-76/"target="_blank">SSW 6 Z 76</a></li>
+	<li data-text="Przykład 9.2"><a href="https://michalswiatkowski.github.io/przyklad-9-2/"target="_blank">Przykład 9.2</a></li>
+	<li data-text="Przykład 9.3"><a href="https://michalswiatkowski.github.io/przyklad-9.3/"target="_blank">Przykład 9.3</a></li>
+	<li data-text="Przykład 9.4"><a href="https://michalswiatkowski.github.io/przyklad-9.4/"target="_blank">Przykład 9.4</a></li>
+	<li data-text="Przykład 9.5"><a href="https://michalswiatkowski.github.io/przyklad-9.5/"target="_blank">Przykład 9.5</a></li>
+	<li data-text="Przykład 9.9"><a href="https://michalswiatkowski.github.io/przyklad-9.9/"target="_blank">Przykład 9.9</a></li>
+	<li data-text="Przykład 10.6"><a href="https://michalswiatkowski.github.io/przyklad-10.6/"target="_blank">Przykład 10.6</a></li>
+	<li data-text="Przykład 10.7"><a href="https://michalswiatkowski.github.io/przyklad-10.7/"target="_blank">Przykład 10.7</a></li>
+	<li data-text="Przykład 10.8"><a href="https://michalswiatkowski.github.io/przyklad-10.8/"target="_blank">Przykład 10.8</a></li>
+	<li data-text="Przykład 10.9"><a href="https://michalswiatkowski.github.io/przyklad-10.9/"target="_blank">Przykład 10.9</a></li>
+	<li data-text="Przykład 10.10"><a href="https://michalswiatkowski.github.io/przyklad-10.10/"target="_blank">Przykład 10.10</a></li>
+	<li data-text="Przykład 10.11"><a href="https://michalswiatkowski.github.io/przyklad-10.11/"target="_blank">Przykład 10.11</a></li>
+	<li data-text="Przykład 10.12"><a href="https://michalswiatkowski.github.io/przyklad-10.12/"target="_blank">Przykład 10.12</a></li>
+	<li data-text="Przykład 10.13"><a href="https://michalswiatkowski.github.io/przyklad-10.13/"target="_blank">Przykład 10.13</a></li>
+	<li data-text="Przykład 10.14"><a href="https://michalswiatkowski.github.io/przyklad-10.14/"target="_blank">Przykład 10.14</a></li>
+	<li data-text="Przykład 10.15"><a href="https://michalswiatkowski.github.io/przyklad-10.15/"target="_blank">Przykład 10.15</a></li>
+	<li data-text="Przykład 10.16"><a href="https://michalswiatkowski.github.io/przyklad-10.16/"target="_blank">Przykład 10.16</a></li>
+	<li data-text="Przykład 10.17"><a href="https://michalswiatkowski.github.io/przyklad-10.17/"target="_blank">Przykład 10.17</a></li>
+	<li data-text="Przykład 10.21"><a href="https://michalswiatkowski.github.io/przyklad-10.21/"target="_blank">Przykład 10.21</a></li>
+	<li data-text="Przykład 10.22"><a href="https://michalswiatkowski.github.io/przyklad-10.22/"target="_blank">Przykład 10.22</a></li>
+</section>
 
-<p>przyklad 5.13
-https://michalswiatkowski.github.io/przykald-5.13/</p>
+<script type="text/javascript">
+	let progress = document.getElementById('progressbar');
+	let totalHeight = document.body.scrollHeight - window.innerHeight;
+	window.onscroll = function(){
+		let progressHeight = (window.pageYOffset / totalHeight) * 100;
+		progress.style.height = progressHeight + "%";
+	}
+</script>
 
-<p>przyklad 5.14
-https://michalswiatkowski.github.io/przyklad-5.14/</p>
-
-<p>przyklad 5.15
-https://michalswiatkowski.github.io/przyklad-5.15/</p>
-
-<p>przyklad 5.16
-https://michalswiatkowski.github.io/przyklad-5.16/</p>
-
-<p>przyklad 6.2
-https://michalswiatkowski.github.io/przyklad-6.2/</p>
-
-<p>przyklad 7.1
-https://michalswiatkowski.github.io/przyklad-7.1/</p>
-
-<p>przyklad 7.2
-https://michalswiatkowski.github.io/przyklad-7.2/</p>
-
-<p>przyklad 7.3
-https://michalswiatkowski.github.io/przyklad-7.3/</p>
-
-<p>przyklad 7.7
-https://michalswiatkowski.github.io/przyklad-7.7/</p>
-
-<p>przyklad 7.10
-https://michalswiatkowski.github.io/przyklad-7.10/</p>
-
-<p>przyklad 7.11
-https://michalswiatkowski.github.io/przyklad-7.11/</p>
-
-<p>przyklad 7.12
-https://michalswiatkowski.github.io/przyklad-7.12/</p>
-
-<p>przyklad 7.13
-https://michalswiatkowski.github.io/przyklad-7.13/</p>
-
-<p>przyklad 7.14
-https://michalswiatkowski.github.io/przyklad-7.14/</p>
-
-<p>przyklad 7.15
-https://michalswiatkowski.github.io/przyklad-7.15/</p>
-
-<p>przyklad 7.16
-https://michalswiatkowski.github.io/przyklad-7.16/</p>
-
-<p>przyklad 7.18
-https://michalswiatkowski.github.io/przyklad-7.18/</p>
-
-<p>przyklad 7.19
-https://michalswiatkowski.github.io/przyklad-7.19/</p>
-
-<p>przyklad 8.6
-https://michalswiatkowski.github.io/przyklad-8.6/</p>
-
-<p>przyklad 8.11
-https://michalswiatkowski.github.io/przyklad-8.11/</p>
-
-<p>SSW 2 Z 76
-https://michalswiatkowski.github.io/SSW-2-z-76/</p>
-
-<p>SSW 6 Z 76
-https://michalswiatkowski.github.io/SSW-6-z-76/</p>
 </body>
 </html>
